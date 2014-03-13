@@ -18,7 +18,7 @@ node[:deploy].each do |application, deploy|
   end
 
   execute 'bundle install' do
-    cwd "#{node[:deploy_to]}/current"
+    cwd "#{deploy[:deploy_to]}/current"
     user 'root'
     environment 'RAILS_ENV' => deploy[:daemon_env]
   end
