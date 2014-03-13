@@ -17,5 +17,11 @@ node[:deploy].each do |application, deploy|
     app application
   end
 
+  execute 'bundle install' do
+    cwd "#{node[:deploy_to]}/current"
+    user 'root'
+    environment 'RAILS_ENV' => deploy[:daemon_env]
+  end
+
   OpsWorks::RailsConfiguration.bundle(application, deploy, "#{deploy[:deploy_to]}/current")
 end
