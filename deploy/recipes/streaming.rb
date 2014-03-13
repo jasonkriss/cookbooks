@@ -16,4 +16,6 @@ node[:deploy].each do |application, deploy|
     deploy_data deploy
     app application
   end
+
+  OpsWorks::RailsConfiguration.bundle(application, deploy, "#{deploy[:deploy_to]}/current")
 end
