@@ -1,7 +1,7 @@
 check process <%= @process_name %>
   with pidfile <%= @path %>/shared/log/<%= @process_name %>.1.pid
   start program = "/bin/sh -c 'cd <%= @path %>/current && sudo /usr/bin/env DAEMON_ENV=<%= @env %> bin/<%= @process_name %> start'"
-  stop program  = /bin/sh -c 'cd <%= @path %>/current && sudo /usr/bin/env DAEMON_ENV=<%= @env %> bin/<%= @process_name %> stop'"
+  stop program  = "/bin/sh -c 'cd <%= @path %>/current && sudo /usr/bin/env DAEMON_ENV=<%= @env %> bin/<%= @process_name %> stop'"
   if cpu usage > 75% for 2 cycles then alert
   if cpu usage > 98% for 5 cycles then restart
   if mem usage > 75% for 2 cycles then alert
