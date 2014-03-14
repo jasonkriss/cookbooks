@@ -1,7 +1,7 @@
 check process <%= @process_name %>
   with pidfile <%= @path %>/shared/log/<%= @process_name %>.1.pid
-  start program = "/bin/sh -c 'cd <%= @path %>/current && /usr/local/bin/bundle exec bin/daemon-example start -e production &>/var/log/streamingmonit.log'"
-  stop program = "/bin/sh -c 'cd <%= @path %>/current && /usr/local/bin/bundle exec bin/daemon-example stop -e production'"
+  start program = "/bin/sh -c 'cd <%= @path %>/current; PATH=/usr/local/bin:$PATH bundle exec bin/daemon-example start -e <%= env %>'"
+  stop program = "/bin/sh -c 'cd <%= @path %>/current; PATH=/usr/local/bin:$PATH bundle exec bin/daemon-example stop -e <%= env %>'"
   if cpu usage > 75% for 2 cycles then alert
   if cpu usage > 98% for 5 cycles then restart
   if mem usage > 75% for 2 cycles then alert
