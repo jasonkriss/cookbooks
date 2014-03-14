@@ -21,6 +21,7 @@ node[:deploy].each do |application, deploy|
     cwd "#{deploy[:deploy_to]}/current"
     user 'root'
     environment 'RAILS_ENV' => deploy[:daemon_env]
+    command 'bundle install --without development test'
   end
 
   OpsWorks::RailsConfiguration.bundle(application, deploy, "#{deploy[:deploy_to]}/current")
